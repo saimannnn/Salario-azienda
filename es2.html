@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<!DOCTYPE html>
+    <html lang=" it">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>stipendi aziendali</title>
+    </head>
+
+<body>
+    <h2>Stipendi aziendali</h2>
+    <input type="text" id="tot" placeholder="Totale stipendi aziendali">
+    <button id="totale">Stampa totale</button><br>
+    <textarea id="lista" cols="30" rows="4"></textarea><br>
+    <input type="text" id="nomerimuovi" placeholder="Nome dipendente">
+    <button id="rimuovi">Rimuovi un dipendente</button>
+    <script>
+        let stipendi_azienda =
+        {
+            Pippo: 1000,
+            Pluto: 1500,
+            Giuseppe: 1250,
+            Marco: 3000,
+            stampa: function () {
+                let totale = 0;
+                let lista = "";
+                for (let i in this) {
+                    if (typeof this[i] === 'number') {
+                        totale += this[i];
+                        lista += `${i}: ${this[i]}\n`;
+                    }
+
+
+                }
+                document.getElementById("tot").value = totale;
+                document.getElementById("lista").value = lista;
+            },
+            Rimuovi: function (i) {
+                delete this[i];
+            }
+        };
+
+
+        document.getElementById("totale").addEventListener("click", function () {
+            stipendi_azienda.stampa();
+        });
+        document.getElementById("rimuovi").addEventListener("click", function () {
+            let nome = document.getElementById("nomerimuovi").value;
+            stipendi_azienda.Rimuovi(nome);
+            stipendi_azienda.stampa();
+            document.getElementById("nomerimuovi").value = "";
+        });
+
+
+    </script>
+</body>
+
+</html>
